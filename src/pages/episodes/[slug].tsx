@@ -72,7 +72,7 @@ export const getStaticPaths: GetStaticPaths =  async () => {
 export const getStaticProps: GetStaticProps = async (ctx) => {
     const {slug} = ctx.params
 
-    const { data } = await api.get(`Lugusfe/Podcastr-nlw/${slug}`)
+    const { data } = await api.get(`Lugusfe/Podcastr-nlw/episodes/${slug}`)
 
     const episode = {
           id: data.id,

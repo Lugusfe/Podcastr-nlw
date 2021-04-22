@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { GetServerSideProps } from 'next'
+import { GetStaticProps } from 'next'
 
 import { format, parseISO } from 'date-fns'
 import ptBR from 'date-fns/locale/pt-BR'
@@ -121,10 +121,10 @@ export default function Home({latestEpisodes, allEpisodes}: HomeProps) {
   )
 }
 
-export const getStaticProps: GetServerSideProps = async () =>{
+export const getStaticProps: GetStaticProps = async () =>{
   
   
-  const { data } = await api.get('Lugusfe/Podcastr-nlw', {
+  const { data } = await api.get('Lugusfe/Podcastr-nlw/episodes', {
     params: {
       _limit: 12,
       _sort: 'published_at',
@@ -132,8 +132,8 @@ export const getStaticProps: GetServerSideProps = async () =>{
     }
   })
 
-  const episodes = data.map(episode => (
-    {
+  const episodes = data.map(episode => {
+    return {
       id: episode.id,
       title: episode.title,
       thumbnail: episode.thumbnail,
@@ -143,8 +143,8 @@ export const getStaticProps: GetServerSideProps = async () =>{
       durationAsString: convertDurationTime(Number(episode.file.duration)),
       description: episode.description,
       url: episode.file.url
-    
-  }))
+    }
+  })
 
   const latestEpisodes =  episodes.slice(0, 2)
   const allEpisodes =  episodes.slice(2, episodes.length)
