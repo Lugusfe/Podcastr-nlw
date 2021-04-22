@@ -14,3 +14,4 @@ Aplicação para navegação e reprodução de episódios de podcasts desenvolvi
 -  NextJS
 -  Sass
 -  date-fns
+-  axios
