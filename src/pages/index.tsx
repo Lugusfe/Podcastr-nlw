@@ -9,6 +9,8 @@ import { convertDurationTime } from "../utils/convertDurationTime"
 import { api } from '../services/api'
 
 import styles from './home.module.scss'
+import { useContext } from 'react'
+import { PlayerContext } from '../contexts/PlayerContext'
 
 type Episode = {
   id: string;
@@ -34,6 +36,7 @@ export default function Home({latestEpisodes, allEpisodes}: HomeProps) {
   //     .then(data => console.log(data))
   // }, [])
 
+  const { play } = useContext(PlayerContext)
 
   return (
     <div className={styles.homePage}>
@@ -61,7 +64,7 @@ export default function Home({latestEpisodes, allEpisodes}: HomeProps) {
                 </div>
 
                 <button type="button">
-                  <img src="/play-green.svg" alt="Tocar episódio"/>
+                  <img src="/play-green.svg" alt="Tocar episódio" onClick={() => play(episode)}/>
                 </button>
               </li>
             )

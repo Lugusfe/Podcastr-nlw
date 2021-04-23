@@ -15,3 +15,4 @@ Aplicação para navegação e reprodução de episódios de podcasts desenvolvi
 -  Sass
 -  date-fns
 -  axios
+-  rc-slider
